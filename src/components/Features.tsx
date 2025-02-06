@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Factory, Truck, Flask } from "lucide-react";
+import { Factory, Truck, TestTubes } from "lucide-react";
 
 const Features = () => {
   const features = [
@@ -14,7 +14,7 @@ const Features = () => {
       description: "Efficient logistics network ensuring timely delivery across the globe"
     },
     {
-      icon: <Flask className="w-6 h-6 text-white" />,
+      icon: <TestTubes className="w-6 h-6 text-white" />,
       title: "Quality Control",
       description: "Rigorous testing and certification for all salt products"
     }
