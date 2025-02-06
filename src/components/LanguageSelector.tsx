@@ -3,6 +3,7 @@ import { Dialog } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/types/language';
+import { X } from 'lucide-react';
 
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +40,15 @@ const LanguageSelector = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-        <div className="bg-[#1A1F2C] p-8 rounded-xl max-w-md w-full mx-4">
+        <div className="bg-[#1A1F2C] p-8 rounded-xl max-w-md w-full mx-4 relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-4 text-white/60 hover:text-white"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
           <h2 className="text-2xl font-bold text-white mb-2">{t.languageSelect.title}</h2>
           <p className="text-white/60 mb-6">{t.languageSelect.subtitle}</p>
           <div className="grid grid-cols-2 gap-4">
