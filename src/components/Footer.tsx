@@ -1,7 +1,19 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "./ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Language } from "@/types/language";
 
 const Footer = () => {
+  const { language, setLanguage, t } = useLanguage();
+
+  const flags: Record<Language, string> = {
+    en: "🇬🇧",
+    ro: "🇷🇴",
+    fr: "🇫🇷",
+    de: "🇩🇪",
+    es: "🇪🇸"
+  };
+
   return (
     <footer className="py-20 px-4 bg-[#1A1F2C] relative overflow-hidden">
       <div className="absolute inset-0 bg-[#8E9196]/5 backdrop-blur-3xl"></div>
@@ -49,13 +61,20 @@ const Footer = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Resources</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-white/60 hover:text-white transition-colors">Safety Data Sheets</a></li>
-              <li><a href="#" className="text-white/60 hover:text-white transition-colors">Technical Support</a></li>
-              <li><a href="#" className="text-white/60 hover:text-white transition-colors">Quality Certificates</a></li>
-              <li><a href="#" className="text-white/60 hover:text-white transition-colors">Documentation</a></li>
-            </ul>
+            <h4 className="text-lg font-semibold text-white">Language</h4>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(flags).map(([lang, flag]) => (
+                <Button
+                  key={lang}
+                  onClick={() => setLanguage(lang as Language)}
+                  className={`flex items-center gap-2 ${
+                    language === lang ? 'bg-white/20' : 'glass-effect'
+                  } hover:bg-white/10`}
+                >
+                  <span className="text-lg">{flag}</span>
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
         
