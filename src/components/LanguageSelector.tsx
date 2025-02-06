@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Dialog } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/types/language';
@@ -39,8 +39,9 @@ const LanguageSelector = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-        <div className="bg-[#1A1F2C] p-8 rounded-xl max-w-md w-full mx-4 relative">
+      <DialogContent className="bg-[#1A1F2C] border-0">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-white">{t.languageSelect.title}</DialogTitle>
           <Button
             variant="ghost"
             size="icon"
@@ -49,22 +50,21 @@ const LanguageSelector = () => {
           >
             <X className="h-4 w-4" />
           </Button>
-          <h2 className="text-2xl font-bold text-white mb-2">{t.languageSelect.title}</h2>
-          <p className="text-white/60 mb-6">{t.languageSelect.subtitle}</p>
-          <div className="grid grid-cols-2 gap-4">
-            {Object.entries(flags).map(([lang, flag]) => (
-              <Button
-                key={lang}
-                onClick={() => handleLanguageSelect(lang as Language)}
-                className="flex items-center gap-2 justify-center py-6 glass-effect hover:bg-white/10"
-              >
-                <span className="text-2xl">{flag}</span>
-                <span>{languages[lang as Language]}</span>
-              </Button>
-            ))}
-          </div>
+        </DialogHeader>
+        <p className="text-white/60 mb-6">{t.languageSelect.subtitle}</p>
+        <div className="grid grid-cols-2 gap-4">
+          {Object.entries(flags).map(([lang, flag]) => (
+            <Button
+              key={lang}
+              onClick={() => handleLanguageSelect(lang as Language)}
+              className="flex items-center gap-2 justify-center py-6 glass-effect hover:bg-white/10"
+            >
+              <span className="text-2xl">{flag}</span>
+              <span>{languages[lang as Language]}</span>
+            </Button>
+          ))}
         </div>
-      </div>
+      </DialogContent>
     </Dialog>
   );
 };
