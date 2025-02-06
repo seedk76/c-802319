@@ -7,6 +7,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
   },
+  { 
+  path: '/solutions',
+  element: <Solutions />,
+ },
   {
     path: '/latest-deployments',
     element: <LatestDeployments />,
